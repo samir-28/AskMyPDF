@@ -67,9 +67,7 @@ dotnet restore
 dotnet build
 dotnet run
 
-Access the app at: https://localhost:5001 or http://localhost:5000
-
-Usage
+How it works ?
 
 Upload a PDF
 
@@ -83,7 +81,7 @@ Upload new PDFs to start new sessions
 
 
 
-Security
+Security Features :
 
 PDF-only uploads
 
