@@ -1,95 +1,88 @@
-AskMyPDF – AI-Powered PDF Chat Assistant (.NET 9 MVC)
+# AskMyPDF – AI-Powered PDF Chat Assistant (.NET 9 MVC)
 
-AskMyPDF is a tool that allows users to upload PDF documents and instantly ask questions about their content. It extracts the text from the file and uses that information to generate accurate answers with the help of Ollama AI.
+<img src="https://github.com/samir-28/AskMyPDF/blob/master/Screenshot%202025-11-19%20184811.png" alt="Screenshot" width="600">
+
+**AskMyPDF** is a tool that allows users to upload PDF documents and instantly ask questions about their content. It extracts the text from the file and uses that information to generate accurate answers with the help of **Ollama AI**.  
 
 Everything runs fully offline using Ollama’s local AI models.
 
-Features
+---
 
-Upload PDFs (up to 50MB)
+## Features
 
-Extract text using iText7
+- Upload PDFs (up to 50MB)  
+- Extract text using iText7  
+- Ask questions about the PDF content  
+- Session-based chat history  
+- Responsive, mobile-friendly UI  
+- Toast notifications for actions  
 
-Ask questions about the PDF content
+---
 
-Session-based chat history
+## Prerequisites
 
-Responsive, mobile-friendly UI
+- .NET 9 SDK  
+- Ollama installed locally  
+- At least one AI model (e.g., llama3.2)  
 
-Toast notifications for actions
+---
 
-Prerequisites
+## Installation
 
-.NET 9 SDK
+### 1. Install Ollama
+Download from [Ollama](https://ollama.com) or use:
 
-Ollama installed locally
-
-At least one AI model (e.g., llama3.2)
-
-Installation
-
-Install Ollama
-Download from Ollama
- or use:
-
+```bash
 curl -fsSL https://ollama.com/install.sh | sh
-
-
-Pull a model
-
+2. Pull a model
+bash
+Copy code
 ollama pull llama3.2
-
-
-Start Ollama service
-
+3. Start Ollama service
+bash
+Copy code
 ollama serve
-
-Create .NET project
-
-Install dependencies
-
+4. Create .NET project & Install dependencies
+bash
+Copy code
 dotnet add package itext7
-
-
-Configure Ollama (appsettings.json)
-
+5. Configure Ollama (appsettings.json)
+json
+Copy code
 {
   "Ollama": {
     "BaseUrl": "http://localhost:11434",
     "ModelName": "llama3.2"
   }
 }
-
-
-Run the app
-
+6. Run the app
+bash
+Copy code
 dotnet restore
 dotnet build
 dotnet run
 
-How it works ?
+```
 
-Upload a PDF
+## How it Works
+-Upload a PDF
 
-Wait for text extraction
+-Wait for text extraction
 
-Ask questions about the document
+-Ask questions about the document
 
-View chat history per session
+-View chat history per session
 
-Upload new PDFs to start new sessions
+-Upload new PDFs to start new sessions
 
+## Security Features
+-PDF-only uploads
 
+-50MB size limit
 
-Security Features :
+-No permanent storage
 
-PDF-only uploads
+-Session timeout: 2 hours
 
-50MB size limit
-
-No permanent storage
-
-Session timeout: 2 hours
-
-Note :
-Its personal project  done with free ollama model and .net 9 .
+## Note:
+-This is a personal project done using a free Ollama model and .NET 9.
