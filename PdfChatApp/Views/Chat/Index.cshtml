@@ -1,0 +1,99 @@
+﻿@model PdfChatApp.Models.ChatSession
+@{
+    ViewData["Title"] = "Chat";
+    var sessionId = ViewBag.SessionId as string;
+    var fileName = ViewBag.FileName as string;
+}
+
+<div class="chat-container">
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h3><i class="fas fa-file-pdf"></i> Document Info</h3>
+        </div>
+
+        <div class="sidebar-content">
+            <div id="documentInfo" class="document-info" style="display: none;">
+                <div class="info-item">
+                    <label><i class="fas fa-file"></i> File Name:</label>
+                    <p id="fileName">-</p>
+                </div>
+                <div class="info-item">
+                    <label><i class="fas fa-clock"></i> Uploaded:</label>
+                    <p id="uploadTime">-</p>
+                </div>
+                <button class="btn-secondary btn-small" id="newDocumentBtn">
+                    <i class="fas fa-plus"></i> New Document
+                </button>
+            </div>
+
+            <div id="uploadSection" class="upload-section">
+                <div class="upload-area" id="uploadArea">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                    <h4>Upload PDF Document</h4>
+                    <p>Drag & drop or click to browse</p>
+                    <input type="file" id="pdfFileInput" accept=".pdf" hidden />
+                    <button class="btn-primary" id="browseBtn">Browse Files</button>
+                </div>
+
+                <div class="upload-progress" id="uploadProgress" style="display: none;">
+                    <div class="spinner"></div>
+                    <p>Processing PDF...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Chat Area -->
+    <div class="main-content">
+        <div class="chat-header">
+            <button class="sidebar-toggle" id="sidebarToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            <h2><i class="fas fa-comments"></i>Chat</h2>
+        </div>
+
+        <div class="chat-messages" id="chatMessages">
+            <div class="welcome-message">
+                <i class="fas fa-robot"></i>
+                <h3>Welcome to AskMyPDF!</h3>
+                <p>Upload your PDF document to start asking questions.</p>
+            </div>
+        </div>
+
+        <div class="chat-input-container">
+            <form id="chatForm" class="chat-input-form">
+                <input type="hidden" id="sessionId" value="@sessionId" />
+                <div class="input-wrapper">
+                    <textarea id="messageInput"
+                              placeholder="Ask a question about your PDF..."
+                              rows="1"
+                              disabled></textarea>
+                    <button type="submit" class="btn-send" id="sendBtn" disabled>
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<div class="toast-container" id="toastContainer"></div>
+
+@section Scripts {
+    <script src="~/js/chat.js" asp-append-version="true"></script>
+    @if (!string.IsNullOrEmpty(sessionId))
+    {
+        <script>
+            // Restore session on page load
+            window.addEventListener('DOMContentLoaded', function() {
+                const existingSessionId = '@sessionId';
+                const existingFileName = '@fileName';
+                if (existingSessionId && existingFileName) {
+                    restoreSession(existingSessionId, existingFileName);
+                }
+            });
+        </script>
+    }
+}
